@@ -10,7 +10,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t python_ecr_project .
+      - docker build -t python_ecr_project:2.0 .
       - docker tag python_ecr_project:latest 038269871983.dkr.ecr.us-east-2.amazonaws.com/python_ecr_project:2.0      
   post_build:
     commands:
