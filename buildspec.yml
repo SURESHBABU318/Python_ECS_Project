@@ -13,14 +13,14 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t my_python_ecr .
-      - docker tag $my_python_ecr:latest $my_python_ecr:$IMAGE_TAG
+      - docker build -t my_python_ecr:2.0 .
+      - docker tag $my_python_ecr:latest $my_python_ecr:2.0 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $my_python_ecr:latest
-      - docker push $my_python_ecr:$IMAGE_TAG
+      - docker push my_python_ecr:latest
+      - docker push my_python_ecr:2.0 .
       - echo Writing image definitions file...
       - printf '[{"name":"python-image","imageUri":"%s"}]' $my_python_ecr:$IMAGE_TAG > imagedefinitions.json
 artifacts:
